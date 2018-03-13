@@ -2,15 +2,14 @@ Mininet Basic Commands:
 =========================
 
 
-1. To check the mininet version 
--------------------------------
+## 1. To check the mininet version 
+
 
 ```
 mn --version
 ```
 
-2. To clean up the existing ovs bridges, namespaces,
-----------------------------------------------------
+## 2. To clean up the existing ovs bridges, namespaces,
 
 
 Note: sometime we mistakenly closed the mininet shell, or mininet crashed. But the topology components will continue to exists. To clean such stuff, cleanup command is used.
@@ -21,8 +20,8 @@ mn -c
 ```
 
 
-3. Our First Simple Topology  
-------------------------------
+## 3. Our First Simple Topology  
+
 
 Topology with Single Switch and 4 Nodes.
 
@@ -48,8 +47,8 @@ sudo mn --controller=remote,ip=127.0.0.1 --mac -i 10.1.1.0/24 --switch=ovsk,prot
 
 
 
-4. Mininet Basic Shell Commands
-------------------------------
+## 4. Mininet Basic Shell Commands
+
 
 Informative commands
 
@@ -71,7 +70,6 @@ h1 ip route
 
 
 
-5.
 
 
 
