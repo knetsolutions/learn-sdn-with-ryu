@@ -10,7 +10,7 @@ mn --version
 ```
 
 
-## 2. To clean up the existing ovs bridges and namespaces
+## 2. To clean up the existing ovs bridges and namespaces
 
 
 Note: sometime we mistakenly closed the mininet shell, or mininet crashed. But the topology components will continue to exists. To clean such stuff, cleanup command is used.
