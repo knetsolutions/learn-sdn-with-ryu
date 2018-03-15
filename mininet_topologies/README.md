@@ -5,6 +5,22 @@
 In the example1, we creates a Linear Topology with two hosts and two switches with local controller and runs the pingall command and exits it.
 
 
+Run the RYU app
+
+```
+ryu-manager ryu.app.simple_switch_13
+```
+
+
+Run the Mininet Custome Topology file
+
+```
+python example1.py
+```
+
+
+
+
 ## Example2
 
 In the example2, we creates a Linear Topology 
@@ -12,6 +28,22 @@ In the example2, we creates a Linear Topology
 2. Assigns the custom MAC Address, IP address for each Host.
 3. Using external controller
 4. start the CLI Prompt
+
+
+Run the RYU app
+
+```
+ryu-manager ryu.app.simple_switch_13
+```
+
+
+Run the Mininet Custome Topology file
+
+```
+python example2.py
+```
+
+
 
 ## Example3
 
@@ -24,9 +56,20 @@ In the example3, we creates a RING Topology
 
 Note: We must use SDN STP application. 
 
+
+Run the RYU app
+
 ```
 ryu-manager ryu.app.simple_switch_stp
 ```
+
+
+Run the Mininet Custome Topology file
+
+```
+python example1.py
+```
+
 
 ## Example4
 
@@ -38,3 +81,18 @@ In the example4, we creates a Linear Topology  and runs IPERF TCP Test between t
 5. Run the iperf client command in the h2 host
 6. Start the CLI Prompt
 
+
+
+
+Run the RYU app
+
+```
+ryu-manager ryu.app.simple_switch_13
+```
+
+
+Run the Mininet Custome Topology file
+
+```
+python example4.py
+```
