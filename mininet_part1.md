@@ -29,6 +29,13 @@ Topology with Single Switch and 4 Nodes.
 
 ![Alt text](imgs/topo1.png?raw=true "Single Topology")
 
+RYU SDN Controller 
+
+```
+ryu-manager ryu.app.simple_switch_13
+```
+
+Mininet Topology
 
 ```
 sudo mn --controller=remote,ip=127.0.0.1 --mac -i 10.1.1.0/24 --switch=ovsk,protocols=OpenFlow13 --topo=single,4
