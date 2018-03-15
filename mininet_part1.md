@@ -9,7 +9,8 @@ Mininet Basic Commands:
 mn --version
 ```
 
-## 2. To clean up the existing ovs bridges, namespaces,
+
+## 2. To clean up the existing ovs bridges and namespaces
 
 
 Note: sometime we mistakenly closed the mininet shell, or mininet crashed. But the topology components will continue to exists. To clean such stuff, cleanup command is used.
@@ -21,6 +22,7 @@ mn -c
 
 
 ## 3. Our First Topology (Single)  
+
 
 
 Topology with Single Switch and 4 Nodes.
@@ -50,6 +52,7 @@ sudo mn --controller=remote,ip=127.0.0.1 --mac -i 10.1.1.0/24 --switch=ovsk,prot
 ## 4. Mininet Basic Shell Commands
 
 
+
 Informative commands
 
 ```
@@ -68,7 +71,7 @@ h1 ping h2
 h1 ip route
 ```
 
-## 3. Linear Topology 
+## 5. Linear Topology 
 
 linear topology (where each switch has one host, and all switches connect in a line)
 
@@ -82,7 +85,7 @@ sudo mn --controller=remote,ip=127.0.0.1 --mac -i 10.1.1.0/24 --switch=ovsk,prot
 
 
 
-## 3. Tree Topology 
+## 6. Tree Topology 
 
 
 ![Alt text](imgs/topo3.png?raw=true "Tree Topology")
