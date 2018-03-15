@@ -12,6 +12,9 @@ from mininet.topo import Topo
 from mininet.net import Mininet
 from mininet.log import setLogLevel
 from mininet.cli import CLI
+from time import sleep
+
+
 
 class SingleSwitchTopo(Topo):
     "Single switch connected to n hosts."
@@ -30,6 +33,7 @@ if __name__ == '__main__':
     topo = SingleSwitchTopo()
     net = Mininet(topo)
     net.start()
+    sleep(5)
     net.pingAll()
     #CLI(net)
     net.stop()
