@@ -2,19 +2,17 @@
 
 This tutorial helps to learn on writing mininet custom topology.
 
-
-## Introduction
-
+## Introduction
 
 mininet exposes the python API. We can create a custom topologies using the python API with few lines of code.  
 
 
-## How to write Custom Topology in Mininet :
+## How to write Custom Topology in Mininet
  
 Steps are below.
 
 
-### 1. Import the python required libraries
+### 1. Import the python required libraries
 
  ``` 
 from mininet.topo import Topo
@@ -44,7 +42,7 @@ c. addLink
 
 
 
-### 3. Start the Topology
+### 3. Start the Topology
 
 
 a. Create the Topology object
@@ -62,8 +60,7 @@ if __name__ == '__main__':
 ``` 
 
 
-## References:
-
+## References:
 
 1. https://github.com/mininet/mininet/wiki/Introduction-to-Mininet
 
