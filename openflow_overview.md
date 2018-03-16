@@ -106,7 +106,7 @@ sudo mn --controller=remote,ip=127.0.0.1 --mac -i 10.1.1.0/24 --switch=ovsk,prot
  B. Controller responds back with Echo Reply.
 
 
-## Statistics Message:
+## 7. Stats Message:
 
    1. flow(individual,aggregate),table,port,queue stats message will send by the controller.
 
