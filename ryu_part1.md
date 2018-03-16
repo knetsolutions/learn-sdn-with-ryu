@@ -1,30 +1,32 @@
 RYU Basic Commands:
 =========================
 
-
-## 1. How to start the ryu controller
-
+## 1. How to start the ryu controller 
 
 ```
-ryu-manager  <filename/application name>
+ryu-manager  <application file name>
 
 ```
+Example applications are available in ryu.app.<application file name> or we can specify the filename(with absolute path).
+  
 
 
-RYU Manager starts the application. 
 Check the running process details.
 
+```
 ps -ef | grep ryu-manager
+```
 
 RYU Manager listens on openflow ports(6653,6633) are in listening state.
 
+
 Check the port statistics
 
-netstat -ap | grep <pid>
+```
+netstat -ap 
+netstat -ap | grep python
 
-
-
-
+```
 
 
 ## 2. How to stop the ryu controller
@@ -37,6 +39,7 @@ pkill -9 ryu-manager
 
 ```
 
+Please check the running process by  ps -ef | grep ryu-manager
 
 
 ## 3. RYU Controller command line options
@@ -68,7 +71,6 @@ ryu-manager --verbose  ryu.app.simple_switch_13
 ```
 
 Download the file  and run it.
-
 
 ```
 ryu-manager --verbose  simple_switch_13.py
