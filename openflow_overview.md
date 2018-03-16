@@ -59,32 +59,33 @@ sudo mn --controller=remote,ip=127.0.0.1 --mac -i 10.1.1.0/24 --switch=ovsk,prot
 
 ## 2.Features Request/Reply Message:
 
-     a. Controller will send the Feature Request Message to the Switch and asking for the Switch supported features.
+  a. Controller will send the Feature Request Message to the Switch and asking for the Switch supported features.
 
-     b. Switch will reply with
-        datapath ID, buffers, tables size,
-        stats reporting : flow stats, port stats, table stats etc.
+  b. Switch will reply with
+     datapath ID, buffers, tables size,
+     stats reporting : flow stats, port stats, table stats etc.
 
 
 ## 3.Port Desc/Status Message:
 	
-    a. Controller will ask for the port description/ status message.
+   a. Controller will ask for the port description/ status message.
 
-    b. Switch will send the Port details of each port.
+   b. Switch will send the Port details of each port.
 
 
 ## 4. Packet In/Packet Out Message:
 
-     a. If Switch want to send a data packet to the Controller, it uses the PACKET IN message
+   a. If Switch want to send a data packet to the Controller, it uses the PACKET IN message
      
-     b.Controller process the Packet in message, and decides what to do(which port to forward/ or drop etc) with this packet.
+   b.Controller process the Packet in message, and decides what to do(which port to forward/ or drop etc) with this packet.
      
-     c. Controller respond with Packet Out Message with actions (FLOOD etc.)
+   c. Controller respond with Packet Out Message with actions (FLOOD etc.)
 
 ## 5. Flow Modification(add,delete) Message:
 	
-    a. To add, remove, modify the flow in the switch, controller using this message.
-    b. Controller Sends the Flow Modification message to the switch with this important params.
+   a. To add, remove, modify the flow in the switch, controller using this message.
+
+   b. Controller Sends the Flow Modification message to the switch with this important params.
 	i). Command,
 	ii). Match
 	iii). Instruction, action.
@@ -100,9 +101,9 @@ sudo mn --controller=remote,ip=127.0.0.1 --mac -i 10.1.1.0/24 --switch=ovsk,prot
 
    To identify the liveliness of the Controller, Switch will send periodic health Check message to the Controller and expects the response. (default: 5sec interval)
 
-	A. Switch sends Echo Request to the Controller.
+ A. Switch sends Echo Request to the Controller.
 
-	B. Controller responds back with Echo Reply.
+ B. Controller responds back with Echo Reply.
 
 
 ## Statistics Message:
