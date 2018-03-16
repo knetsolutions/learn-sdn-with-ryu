@@ -1,5 +1,4 @@
-# How Traditional L2 Switch Works (Technical details) :
-
+# How Traditional L2 Switch Works (Technical details) :
 
 1. Traditional Switch have built in Control Plane + Data Plane.
 2. Mac Table( a.k.a Forwarding table) is Empty when the switch starts.
@@ -42,7 +41,7 @@ sudo mn --controller=remote,ip=127.0.0.1 --mac -i 10.1.1.0/24 --switch=ovsk,prot
 # Openflow Messages in Detail:
 
 
-## 1.Hello Message:
+## 1.Hello Message:
 
    a.  Switch sends Openflow Hello Message(includes version number) to the Controller (port number 6653)
 
@@ -60,50 +59,44 @@ sudo mn --controller=remote,ip=127.0.0.1 --mac -i 10.1.1.0/24 --switch=ovsk,prot
 
 ## 2.Features Request/Reply Message:
 
-	1.Controller will send the Feature Request Message to the Switch and asking for the Switch supported features.
+     a. Controller will send the Feature Request Message to the Switch and asking for the Switch supported features.
 
- 	2. Switch will reply with
- 	        datapath ID, buffers, tables size,
- 	        stats reporting : flow stats, port stats, table stats etc.
+     b. Switch will reply with
+        datapath ID, buffers, tables size,
+        stats reporting : flow stats, port stats, table stats etc.
 
 
 ## 3.Port Desc/Status Message:
 	
-	1. Controller will ask for the port description/ status message.
+    a. Controller will ask for the port description/ status message.
 
-    2. Switch will send the Port details of each port.
+    b. Switch will send the Port details of each port.
 
 
 ## 4. Packet In/Packet Out Message:
 
-	1. If Switch want to send a data packet to the Controller, it uses the PACKET IN message
-
-	2.Controller process the Packet in message, and decides what to do(which port to forward/ or drop etc) with this packet.
-
-	3. Controller respond with Packet Out Message with actions (FLOOD etc.)
-
-
+     a. If Switch want to send a data packet to the Controller, it uses the PACKET IN message
+     
+     b.Controller process the Packet in message, and decides what to do(which port to forward/ or drop etc) with this packet.
+     
+     c. Controller respond with Packet Out Message with actions (FLOOD etc.)
 
 ## 5. Flow Modification(add,delete) Message:
 	
-	1. To add, remove, modify the flow in the switch, controller using this message.
-	2. Controller Sends the Flow Modification message to the switch with this important params.
-		a. Command,
-		b. Match
-		c. Instruction, action.
-
+    a. To add, remove, modify the flow in the switch, controller using this message.
+    b. Controller Sends the Flow Modification message to the switch with this important params.
+	i). Command,
+	ii). Match
+	iii). Instruction, action.
 
 	At the time of switch starts(initial negotiatian), Controller adds TABLE MISS entry in to the switch.
+   ### Table Miss Entry:
+ 
+ The flow entry that wildcards all fields (all fields omitted) and has priority equal to 0 is called the table-miss flow entry
+ RYU installs the table miss entry to forward the packets to the controller port(action = output:Controller port).
 
 
-	### Table Miss Entry:
-
-	The flow entry that wildcards all fields (all fields omitted) and has priority equal to 0 is called the table-miss flow entry
-
-	RYU installs the table miss entry to forward the packets to the controller port(action = output:Controller port).
-
-
-## 6. Echo Request/Reply Message: 
+## 6. Echo Request/Reply Message: 
 
    To identify the liveliness of the Controller, Switch will send periodic health Check message to the Controller and expects the response. (default: 5sec interval)
 
@@ -112,7 +105,7 @@ sudo mn --controller=remote,ip=127.0.0.1 --mac -i 10.1.1.0/24 --switch=ovsk,prot
 	B. Controller responds back with Echo Reply.
 
 
-## Statistics Message:
+## Statistics Message:
 
    1. flow(individual,aggregate),table,port,queue stats message will send by the controller.
 
@@ -121,19 +114,19 @@ sudo mn --controller=remote,ip=127.0.0.1 --mac -i 10.1.1.0/24 --switch=ovsk,prot
    This is used for monitoring the switches (with variour counter packets/sec, errors, etc)
 
 
-
 # Important Openvswitch Commands
 
+```
 sudo ovs-vsctl show
 sudo ovs-ofctl -O <openflow-version> show <switch-name>
 sudo ovs-ofctl -O OpenFlow13 show s1
 sudo ovs-ofctl -O Openflow13 dump-flows s1
-
+```
 
 
 # Take aways:
 
-1) Controller must use same Openflow version which switch uses.
+1) Openflow version should match between the switch and Controller
 
 2) Our Controller Application(our RYU project/exercise) should process Packet IN (Message), to build the Switching/Routing logic.
 
@@ -146,4 +139,5 @@ sudo ovs-ofctl -O Openflow13 dump-flows s1
 # References
 
 https://www.opennetworking.org/software-defined-standards/specifications/
+
 https://osrg.github.io/ryu/resources.html
