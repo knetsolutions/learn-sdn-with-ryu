@@ -85,6 +85,18 @@ Mininet Topology
 sudo mn --controller=remote,ip=127.0.0.1 --mac -i 10.1.1.0/24 --switch=ovsk,protocols=OpenFlow13 --topo=linear,4  -x
 ```
 
+IPERF Test
+
+h4 node
+```
+iperf -s
+```
+h1 node
+```
+iperf -c 10.1.1.4 -P 10
+```
+
+
 OVS flows
 ```
 sudo ovs-ofctl -O OpenFlow13 dump-flows s1
