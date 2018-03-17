@@ -1,4 +1,4 @@
-RYU Part3:
+RYU Part4:
 =========
 
 In this exercise, We are going to modify the simple_switch_13.py(Layer 2 Switch) application to Layer 4 Switch.
@@ -25,7 +25,7 @@ We will populate the flow tables based on Layer 4 information( source ip and des
 ## Code changes:
 
 
-Include the required
+Include the required library modules
 ```
 from ryu.lib.packet import in_proto
 from ryu.lib.packet import ipv4
