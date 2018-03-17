@@ -65,14 +65,6 @@ Populate the IP Match (replace the ethernet match)
                     u = pkt.get_protocol(udp.udp)
                     match = parser.OFPMatch(eth_type=ether_types.ETH_TYPE_IP, ipv4_src=srcip, ipv4_dst=dstip, ip_proto=protocol, udp_src=u.src_port, udp_dst=u.dst_port,)            
 
-            	# verify if we have a valid buffer_id, if yes avoid to send both
-            	# flow_mod & packet_out
-            	if msg.buffer_id != ofproto.OFP_NO_BUFFER:
-                	self.add_flow(datapath, 1, match, actions, msg.buffer_id)
-                	return
-            	else:
-                	self.add_flow(datapath, 1, match, actions)
-
 
 ```
 
