@@ -24,6 +24,12 @@ We will populate the flow tables based on Layer 4 information( source ip and des
 
 ## Code changes:
 
+Copy the simple_switch_13.py to ex3_L4Match_switch.py file
+```
+cp simple_switch_13.py ex3_L4Match_switch.py
+```
+
+Modify the ex3_L4Match_switch.py file as below,
 
 Include the required library modules
 ```
@@ -69,6 +75,31 @@ Populate the IP Match (replace the ethernet match)
 
 
 ```
+
+## Test
+
+We need to send TCP/UDP Traffic to see TCP/UDP Flows.
+
+
+Ryu Application
+
+```
+ryu-manager ex3_L4Match_switch.py
+```
+
+Mininet Topology
+
+```
+sudo mn --controller=remote,ip=127.0.0.1 --mac -i 10.1.1.0/24 --switch=ovsk,protocols=OpenFlow13 --topo=linear,4  -x
+```
+
+OVS flows
+```
+sudo ovs-ofctl -O OpenFlow13 dump-flows s1
+```
+
+
+
 
 
 # Reference:
