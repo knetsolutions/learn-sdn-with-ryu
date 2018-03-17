@@ -36,6 +36,30 @@ Populate the IP Match (replace the ethernet match)
 ```
 
 
+## Test:
+
+Ryu Application
+
+```
+ryu-manager  ex2_L3Match_switch.py
+
+```
+
+Mininet Topology
+
+```
+sudo mn --controller=remote,ip=127.0.0.1 --mac -i 10.1.1.0/24 --switch=ovsk,protocols=OpenFlow13 --topo=linear,4 
+
+```
+
+Check the OVS flows
+
+
+```
+sudo ovs-ofctl -O OpenFlow13 dump-flows s1
+```
+
+
 # Reference:
 
 1. https://www.opennetworking.org/software-defined-standards/specifications/
