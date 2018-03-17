@@ -15,6 +15,12 @@ We will populate the flow tables based on Layer 3 information( source ip and des
 
 ## Code changes:
 
+Copy the simple_switch_13.py to ex2_L3Match_switch.py file
+
+```
+cp simple_switch_13.py ex2_L3Match_switch.py
+```
+Modify the ex2_L3Match_switch.py file as below,
 
 Include the required
 ```
