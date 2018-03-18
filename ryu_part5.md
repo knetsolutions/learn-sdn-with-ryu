@@ -26,12 +26,12 @@ In simple_switch.py, the default timeout values(for idle and hard) are not set(0
 
 ## Code changes:
 
-Copy the simple_switch_13.py to ex4_flow_switch.py file
+Copy the simple_switch_13.py to ex4_flow_timeout.py file
 ```
-cp simple_switch_13.py ex4_flow_switch.py
+cp simple_switch_13.py ex4_flow_timeout.py
 ```
 
-Modify the ex4_flow_switch.py file as below,
+Modify the ex4_flow_timeout.py file as below,
 
 In the add_flow function,
 OFPFlowMod API include the idle_timeout=10, hard_timeout=30 parameters.
@@ -54,7 +54,7 @@ Note : The default command is command=ofproto.OFPFC_ADD
 Ryu Application
 
 ```
-ryu-manager ex4_flow_switch.py
+ryu-manager ex4_flow_timeout.py
 ```
 
 Mininet Topology
