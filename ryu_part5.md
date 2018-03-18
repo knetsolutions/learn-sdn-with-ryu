@@ -33,15 +33,17 @@ cp simple_switch_13.py ex4_flow_timeout.py
 
 Modify the ex4_flow_timeout.py file as below,
 
-In the add_flow function,
-OFPFlowMod API include the idle_timeout=10, hard_timeout=30 parameters.
+1. In the add_flow function, include idle, hard parameters with default value as 0.
+2. OFPFlowMod API include the idle_timeout,hard_timeout parameters.
 
 ```    
             mod = parser.OFPFlowMod(datapath=datapath, buffer_id=buffer_id,
-                                    idle_timeout=10, hard_timeout=30, priority=priority, match=match,
+                                    idle_timeout=idle, hard_timeout=hard, priority=priority, match=match,
                                     instructions=inst)
 
 ```
+3. Call the add_flow function with idle, hard value
+
 
 Note : The default command is command=ofproto.OFPFC_ADD
 
