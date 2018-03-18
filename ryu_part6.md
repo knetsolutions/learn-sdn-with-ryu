@@ -3,7 +3,7 @@ RYU Part6:
 
 In this exercise, We are going to include the flow priority  in  the simple_switch_13.py(Layer 2 Switch). 
 
-In this exercise, we will add the ICMP DROP flow( Match ALL Traffic) with higher priority. Remaining traffic will go via the L2 Switch flows.
+In this exercise, we will add the TCP DROP flow( Match ALL Traffic) with higher priority. Remaining traffic will go via the L2 Switch flows.
 
 
 
