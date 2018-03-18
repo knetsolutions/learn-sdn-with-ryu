@@ -30,8 +30,14 @@ Copy the simple_switch_13.py to ex5_flow_priority.py file
 ```
 cp simple_switch_13.py ex5_flow_priority.py
 ```
-
 Modify the ex5_flow_priority.py file as below,
+
+
+include the libs
+```
+from ryu.lib.packet import in_proto
+from ryu.lib.packet import ipv4
+```
 
 In the switch_features_handler function, Add the TCP drop flow
 
@@ -60,11 +66,16 @@ Mininet Topology
 sudo mn --controller=remote,ip=127.0.0.1 --mac -i 10.1.1.0/24 --switch=ovsk,protocols=OpenFlow13 --topo=single,4   -x
 ```
 
+Check the flows
+
+```
+sudo ovs-ofctl -O OpenFlow13 dump-flows s1
+```
+
 Lets Ping and watch the flows
 
 
-
-IPERF Test
+Perform IPERF Test
 
 h4 node
 ```
