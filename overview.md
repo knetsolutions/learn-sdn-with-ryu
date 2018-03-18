@@ -1,6 +1,6 @@
 # Overview
 
-# Learn_SDN_with_RYU_Controller
+# Learn_SDN_with_RYU_Controller
 
 This is a crash course to learn Software Defined Networking with hands on exercises.  
 This course is primarily built for University Students/Beginners, who wants to learn SDN and RYU Controller 
@@ -10,7 +10,7 @@ In this course, we uses the MiniNet and RYU SDN Controller for SDN Test bed..
 
 This course DOESNOT cover OpenDayLight, ONOS SDN, FLOODLIGHT controllers .
 
-This course explains,
+# Course Overview
 
 1) How do you setup the SDN Test environment in your laptop , its step by step explanations.
 
