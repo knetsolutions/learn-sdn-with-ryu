@@ -34,13 +34,6 @@ The Layer2 switching logic, will update the Flow rules in FORWARD Table.
 
 ## Code changes:
 
-Copy the simple_switch_13.py to ex6_multiple_tables.py file
-```
-cp simple_switch_13.py ex6_multiple_tables.py
-```
-
-Modify the ex6_multiple_tables.py file as below,
-
 
 Library inclusion
 ```    
@@ -103,7 +96,6 @@ sudo mn --controller=remote,ip=127.0.0.1 --mac -i 10.1.1.0/24 --switch=ovsk,prot
 ```
 
 Lets Ping and watch the flows
-
 
 
 IPERF Test
