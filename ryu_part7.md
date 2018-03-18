@@ -86,7 +86,7 @@ In the add_flow function, we specify the tableid as FORWARD Table.
 Ryu Application
 
 ```
-ryu-manager ex4_flow_switch.py
+ryu-manager ex6_multiple_tables.py
 ```
 
 Mininet Topology
