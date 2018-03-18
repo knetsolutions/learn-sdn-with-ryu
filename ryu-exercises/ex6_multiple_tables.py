@@ -91,7 +91,7 @@ class SimpleSwitch13(app_manager.RyuApp):
     def apply_filter_table_rules(self, datapath):
         ofproto = datapath.ofproto
         parser = datapath.ofproto_parser
-        match = parser.OFPMatch(eth_type=ether_types.ETH_TYPE_IP, ip_proto=in_proto.IPPROTO_TCP)
+        match = parser.OFPMatch(eth_type=ether_types.ETH_TYPE_IP, ip_proto=in_proto.IPPROTO_ICMP)
         mod = parser.OFPFlowMod(datapath=datapath, table_id=FILTER_TABLE,
                                 priority=10000, match=match)
         datapath.send_msg(mod)
