@@ -57,7 +57,7 @@ Note: Default Action is DROP.
 Ryu Application
 
 ```
-ryu-manager ex4_flow_switch.py
+ryu-manager ex5_flow_priority.py
 ```
 
 Mininet Topology
