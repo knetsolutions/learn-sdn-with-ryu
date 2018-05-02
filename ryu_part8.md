@@ -33,7 +33,7 @@ We wants to capture all the traffic travels via switch S1, in the sniffer host.
 
 Topology file: mininet_topologies/group_table_topo.py
 
-### Logic:
+### Logic:
 
 S1 has three ports. port1 connected to sniffer host, port2 connected to S2, Port3 connected to S3.
 
@@ -45,7 +45,7 @@ S1 has three ports. port1 connected to sniffer host, port2 connected to S2, Port
 
 How to achieve this,
 
-### Group table1(Group Table ID 50):
+### Group table1(Group Table ID 50):
 
 Create a Group table with  TYPE=ALL(it means,  copy a packet for each bucket. and each bucket will be processed). create two buckets. one bucket will send the packet to Port3, another bucket will send the packet to Port1
 
