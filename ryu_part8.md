@@ -33,10 +33,7 @@ We wants to capture all the traffic travels via switch S1, in the sniffer host.
 
 Topology file: mininet_topologies/group_table_topo.py
 
-
-
-## Logic:
-
+### Logic:
 
 S1 has three ports. port1 connected to sniffer host, port2 connected to S2, Port3 connected to S3.
 
@@ -47,7 +44,6 @@ S1 has three ports. port1 connected to sniffer host, port2 connected to S2, Port
 
 
 How to achieve this,
-
 
 ### Group table1(Group Table ID 50):
 
@@ -144,7 +140,11 @@ sudo ovs-ofctl -O OpenFlow13 dump-groups s1
 sudo ovs-ofctl -O OpenFlow13 dump-flows s1
 ```
 
-4. pingall from the mininet cli
+4. pingll, and ping h1 to h6 continuously
+
+
+5. capture the packets in sniffer host (tcpdump). we can see the ping packets in sniffer host.
+
 
 
 # References:
