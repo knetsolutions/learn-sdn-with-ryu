@@ -30,7 +30,7 @@ arp_table = {"10.0.0.1": "00:00:00:00:00:01",
              }
 
 
-class SimpleSwitch13(app_manager.RyuApp):a
+class SimpleSwitch13(app_manager.RyuApp):
     OFP_VERSIONS = [ofproto_v1_3.OFP_VERSION]
 
     def __init__(self, *args, **kwargs):
