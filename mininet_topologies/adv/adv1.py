@@ -8,9 +8,9 @@ Two directly connected switches plus a host for each switch:
    host1 --- switch1 --- switch2 --- host2
 
 1. do pingall
-2. bring down the link (switch1 to switch2)
-3. do pingall
-4. bring up the link (switch1 to switch2)
+2. Add a host3, switch3
+3. Add a Link host3 to switch3
+4. Add a Link swith2 to switch3
 5. do pingall
 6. cli
 """
@@ -38,6 +38,8 @@ class SingleSwitchTopo(Topo):
         self.addLink(s1, s2)
 
 
+# This program is Not working - To be looked
+
 if __name__ == '__main__':
     setLogLevel('info')
     topo = SingleSwitchTopo()
@@ -47,12 +49,19 @@ if __name__ == '__main__':
     sleep(5)
     net.pingAll()
 
-    # link down s1 to s2
-    net.configLinkStatus('s1', 's2', 'down')
-    net.pingAll()
+    # add host
+    net.addHost('h3')
+    h3 = net.get('h3')
+    h3.setIP('192.168.1.3/24')
 
-    # link up s1 to s2
-    net.configLinkStatus('s1', 's2', 'up')
+    net.addSwitch('s3')
+    s3 = net.get('s3')
+
+    net.addLink(s3, h3)
+
+    s2 = net.get('s2')
+    net.addLink(s2, s3)
+    net.build()
     net.pingAll()
 
     CLI(net)
