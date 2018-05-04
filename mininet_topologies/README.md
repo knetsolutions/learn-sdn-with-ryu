@@ -96,3 +96,34 @@ Run the Mininet Custome Topology file
 ```
 python example4.py
 ```
+
+
+## Example5
+
+In the example4, we creates a Linear Topology and switch off and on the links.
+1. Four hosts and Four switches. 
+2. Assigns the custom MAC Address, IP address for each Host.
+3. Using external controller
+4. pingall
+5. shutdown s3 to s4 link
+6. pingall
+7. bringback s3 to s4 link
+8. pingall
+
+
+
+
+Run the RYU app
+
+```
+ryu-manager ryu.app.simple_switch_13
+```
+
+
+Run the Mininet Custome Topology file
+
+```
+python example5.py
+```
+
+

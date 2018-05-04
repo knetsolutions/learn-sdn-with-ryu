@@ -21,16 +21,9 @@ from ryu.ofproto import ofproto_v1_3
 from ryu.lib.packet import packet
 from ryu.lib.packet import ethernet
 from ryu.lib.packet import ether_types
-from ryu.lib.packet import arp
-
-arp_table = {"10.0.0.1": "00:00:00:00:00:01",
-             "10.0.0.2": "00:00:00:00:00:02",
-             "10.0.0.3": "00:00:00:00:00:03",
-             "10.0.0.4": "00:00:00:00:00:04"
-             }
 
 
-class SimpleSwitch13(app_manager.RyuApp):a
+class SimpleSwitch13(app_manager.RyuApp):
     OFP_VERSIONS = [ofproto_v1_3.OFP_VERSION]
 
     def __init__(self, *args, **kwargs):
@@ -55,6 +48,18 @@ class SimpleSwitch13(app_manager.RyuApp):a
                                           ofproto.OFPCML_NO_BUFFER)]
         self.add_flow(datapath, 0, match, actions)
 
+        # switch s1
+        if datapath.id == 1:
+            # add group tables
+            self.send_group_mod(datapath)
+            actions = [parser.OFPActionGroup(group_id=50)]
+            match = parser.OFPMatch(in_port=2)
+            self.add_flow(datapath, 10, match, actions)
+            # entry 2
+            actions = [parser.OFPActionGroup(group_id=51)]
+            match = parser.OFPMatch(in_port=3)
+            self.add_flow(datapath, 10, match, actions)
+
     def add_flow(self, datapath, priority, match, actions, buffer_id=None):
         ofproto = datapath.ofproto
         parser = datapath.ofproto_parser
@@ -69,30 +74,6 @@ class SimpleSwitch13(app_manager.RyuApp):a
             mod = parser.OFPFlowMod(datapath=datapath, priority=priority,
                                     match=match, instructions=inst)
         datapath.send_msg(mod)
-
-    def arp_process(self, datapath, eth, a, in_port):
-        r = arp_table.get(a.dst_ip)
-        if r:
-            self.logger.info("Matched MAC %s ", r)
-            arp_resp = packet.Packet()
-            arp_resp.add_protocol(ethernet.ethernet(ethertype=eth.ethertype,
-                                  dst=eth.src, src=r))
-            arp_resp.add_protocol(arp.arp(opcode=arp.ARP_REPLY,
-                                  src_mac=r, src_ip=a.dst_ip,
-                                  dst_mac=a.src_mac,
-                                  dst_ip=a.src_ip))
-
-            arp_resp.serialize()
-            actions = []
-            actions.append(datapath.ofproto_parser.OFPActionOutput(in_port))
-            parser = datapath.ofproto_parser  
-            ofproto = datapath.ofproto
-            out = parser.OFPPacketOut(datapath=datapath, buffer_id=ofproto.OFP_NO_BUFFER,
-                                  in_port=ofproto.OFPP_CONTROLLER, actions=actions, data=arp_resp)
-            datapath.send_msg(out)
-            self.logger.info("Proxied ARP Response packet")
-
-
 
     @set_ev_cls(ofp_event.EventOFPPacketIn, MAIN_DISPATCHER)
     def _packet_in_handler(self, ev):
@@ -117,19 +98,12 @@ class SimpleSwitch13(app_manager.RyuApp):a
         src = eth.src
 
         dpid = datapath.id
+
         self.mac_to_port.setdefault(dpid, {})
 
         self.logger.info("packet in %s %s %s %s", dpid, src, dst, in_port)
-
         # learn a mac address to avoid FLOOD next time.
         self.mac_to_port[dpid][src] = in_port
-
-        # Check whether is it arp packet
-        if eth.ethertype == ether_types.ETH_TYPE_ARP:
-            self.logger.info("Received ARP Packet %s %s %s ", dpid, src, dst)
-            a = pkt.get_protocol(arp.arp)
-            self.arp_process(datapath, eth, a, in_port)
-            return
 
         if dst in self.mac_to_port[dpid]:
             out_port = self.mac_to_port[dpid][dst]
@@ -155,3 +129,32 @@ class SimpleSwitch13(app_manager.RyuApp):a
         out = parser.OFPPacketOut(datapath=datapath, buffer_id=msg.buffer_id,
                                   in_port=in_port, actions=actions, data=data)
         datapath.send_msg(out)
+
+
+
+    def send_group_mod(self, datapath):
+        ofproto = datapath.ofproto
+        parser = datapath.ofproto_parser
+
+        # Hardcoding the stuff, as we already know the topology diagram.
+        # Group table1
+        # Receiver port2, forward it to port1 and Port3
+
+        actions1 = [parser.OFPActionOutput(1)]
+        actions2 = [parser.OFPActionOutput(3)]
+        buckets = [parser.OFPBucket(actions=actions1),
+                   parser.OFPBucket(actions=actions2)]
+        req = parser.OFPGroupMod(datapath, ofproto.OFPGC_ADD,
+                                 ofproto.OFPGT_ALL, 50, buckets)
+        datapath.send_msg(req)
+
+        # Group table2
+        # Receive Port3, forward it to port1 and Port2
+        actions1 = [parser.OFPActionOutput(1)]
+        actions2 = [parser.OFPActionOutput(2)]
+        buckets = [parser.OFPBucket(actions=actions1),
+                   parser.OFPBucket(actions=actions2)]
+        req = parser.OFPGroupMod(datapath, ofproto.OFPGC_ADD,
+                                 ofproto.OFPGT_ALL, 51, buckets)
+        datapath.send_msg(req)
+

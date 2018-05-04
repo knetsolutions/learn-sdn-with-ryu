@@ -68,3 +68,8 @@ if __name__ == '__main__':
 
 3. http://mininet.org/api/annotated.html
 
+# To read
+4. https://kiranvemuri.info/dynamic-topology-changes-in-mininet-advanced-users-5c452f7f302a
+
+4. https://stackoverflow.com/questions/43070043/mininet-wifi-custom-topology
+https://stackoverflow.com/questions/43070043/mininet-wifi-custom-topology
