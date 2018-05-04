@@ -25,12 +25,6 @@ from ryu.lib.packet import ether_types
 from ryu.topology import event, switches
 from ryu.topology.api import get_switch, get_link
 
-import networkx as nx
-import matplotlib.pyplot as plt
-
-
-
-
 
 class SimpleSwitch13(app_manager.RyuApp):
     OFP_VERSIONS = [ofproto_v1_3.OFP_VERSION]
@@ -49,12 +43,6 @@ class SimpleSwitch13(app_manager.RyuApp):
         links = [(link.src.dpid, link.dst.dpid, {'port': link.src.port_no}) for link in links_list]
         print "switches ", switches
         print "links ", links
-        self.G = nx.Graph()
-        self.G.add_nodes_from(switches)
-        self.G.add_edges_from(links)
-        nx.draw(self.G)
-        plt.show()
-
 
     @set_ev_cls(ofp_event.EventOFPSwitchFeatures, CONFIG_DISPATCHER)
     def switch_features_handler(self, ev):

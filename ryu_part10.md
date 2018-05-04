@@ -1,11 +1,34 @@
 Topology Discovery
 ===================
 
+In this section, we discuss how RYU controller discovers the topology.
+
+
+1. Switch Discovery
+
+LLDP(Link Layer Discovery protocol)
+
+
+2. Host Discovery
+
+(write our algo in the packet_in handler to discover the hosts, connected in the switch)
+
+
+## Program overview:
 
 
 
-References:
-============
+
+
+## Testing
+
+
+
+
+
+
+# References:
+
 
 1. https://en.wikipedia.org/wiki/Link_Layer_Discovery_Protocol
 
