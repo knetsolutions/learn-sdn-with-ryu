@@ -152,10 +152,9 @@ sudo ovs-ofctl -O OpenFlow13 dump-flows s1
 
 1. openflow 1.3 specification documemnt, 5.6 Group table
 
+2. http://ryu.readthedocs.io/en/latest/ofproto_v1_3_ref.html
 
-2. https://www.quora.com/Why-dose-the-Openflow-protocol-exist-the-group-table-And-what-the-relationship-between-pipeline-and-group-table
+3. https://www.quora.com/Why-dose-the-Openflow-protocol-exist-the-group-table-And-what-the-relationship-between-pipeline-and-group-table
 
 
-3. http://www.muzixing.com/pages/2014/11/07/load-balancemultipath-application-on-ryu.html
-
-4. https://github.com/muzixing/ryu/tree/master/ryu/app/multipath
+4. http://www.muzixing.com/pages/2014/11/07/load-balancemultipath-application-on-ryu.html
