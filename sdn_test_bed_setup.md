@@ -9,7 +9,7 @@ As first step, please run this command.
 ```
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install git gcc python-dev libffi-dev libssl-dev libxml2-dev libxslt1-dev zlib1g-dev
+sudo apt-get install git gcc python-dev libffi-dev libssl-dev libxml2-dev libxslt1-dev zlib1g-dev python-pip
 ```
 
 
