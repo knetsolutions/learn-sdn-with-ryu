@@ -6,7 +6,8 @@ This is the UDEMY SDN RYU controller Course Contents, Click below to access the 
 https://www.udemy.com/learn-sdn-with-mininet-ryu-exercises/?couponCode=PROMO10
 
 
-For support and advanced RYU training,  reach me on,
+Online SDN RYU/Openflow/Programming/Project assistance Training course ,
+
 http://knetsolutions.in/
 
 knetsolutions2@gmail.com
