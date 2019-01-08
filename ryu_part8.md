@@ -22,7 +22,8 @@ Forward the packet to 1 bucket(out of N buckets) and process it.  (Load Balancer
 
 
 
-# Objective:
+# 1. Sniffer Demo
+
 
 We wants to capture all the traffic travels via switch S1, in the sniffer host.
 
@@ -144,6 +145,156 @@ sudo ovs-ofctl -O OpenFlow13 dump-flows s1
 
 
 5. capture the packets in sniffer host (tcpdump). we can see the ping packets in sniffer host.
+
+
+
+# 2. Loadbalancer Demo
+
+
+Note:  
+
+**This is not the full fledged the Loadbalancer project, I just want to demonstrate the Group Table Load balancer functionality. Hence I hardcoded the topology information in the RYU load balancer application with proactive flows.**
+
+
+## Topology Diagram
+
+![Alt text](imgs/group_table1.png?raw=true "Group table example")
+
+Topology file:  mininet_topologies/group_table_lb.py
+
+
+##  Application Logic:
+
+
+1. In the switch S1, and S4
+
+   Add the group table 50 -  
+   This group table is type OFPGT_SELECT with two buckets.
+   Bucket1 - Output to Port1
+   Bucket2 - Output to Port2 
+
+   So , when the packet enters in this group table, it will select(switch implementation specific algorithm)  any one bucket and send this packet.
+
+
+2. In Switch S1, When the packet enters from port 3, send it to group table 50.
+
+3. In switch S1, when the packet enters from port 1 or 2, send it to port3.
+
+4. In Switch S4, When the packet enters from port 3, send it to group table 50.
+
+5. In switch S4, when the packet enters from port 1 or 2, send it to port3.
+
+6. In Switch S2 and S3, it just need to forward the packet to other port. 
+
+## Code overview:
+
+
+ryu-exercises/load-balancer.py
+
+
+## Testing:
+
+
+
+1. start the RYU controller
+
+```
+ryu-manager load_balancer.py
+```
+
+2. start the mininet topology
+
+```
+sudo python group_table_lb.py
+```
+
+3. verify the group tables and proactive flows in switch S1,S4,S2,S3
+
+```
+sudo ovs-ofctl -O OpenFlow13 dump-groups s1
+sudo ovs-ofctl -O OpenFlow13 dump-flows s1
+sudo ovs-ofctl -O OpenFlow13 dump-groups s4
+sudo ovs-ofctl -O OpenFlow13 dump-flows s4
+sudo ovs-ofctl -O OpenFlow13 dump-flows s2
+sudo ovs-ofctl -O OpenFlow13 dump-flows s3
+```
+
+4. Add a arp entry: ??
+
+
+
+5. Test the ping and verify the status of load balancing
+
+```
+sudo ovs-ofctl -O OpenFlow13 dump-group-stats s1
+sudo ovs-ofctl -O OpenFlow13 dump-group-stats s4
+sudo ovs-ofctl -O OpenFlow13 dump-flows s2
+sudo ovs-ofctl -O OpenFlow13 dump-flows s3
+
+```
+
+
+6. Test the TCP Traffic between h1 and h2
+
+
+```
+mininet> h2 iperf  -s &
+mininet> h1 iperf  -c h2 -t 30 
+```
+
+Check the stats
+
+```
+sudo ovs-ofctl -O OpenFlow13 dump-group-stats s1
+sudo ovs-ofctl -O OpenFlow13 dump-group-stats s4
+sudo ovs-ofctl -O OpenFlow13 dump-flows s2
+sudo ovs-ofctl -O OpenFlow13 dump-flows s3
+
+```
+
+
+7. Openvswitch Group table implementation details
+
+http://docs.openvswitch.org/en/latest/faq/openflow/
+
+8. Test the TCP Traffic with parallel streams beween h1 and h2 and check the status
+
+```
+mininet> h2 iperf  -s &
+mininet> h1 iperf  -c h2 -P 4 -t 30 
+```
+
+Check the stats
+
+```
+sudo ovs-ofctl -O OpenFlow13 dump-group-stats s1
+sudo ovs-ofctl -O OpenFlow13 dump-group-stats s4
+sudo ovs-ofctl -O OpenFlow13 dump-flows s2
+sudo ovs-ofctl -O OpenFlow13 dump-flows s3
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
