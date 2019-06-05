@@ -8,20 +8,13 @@ https://www.udemy.com/learn-sdn-with-mininet-ryu-exercises/?couponCode=PROMO10
 
 
 
-# SDN Beginners Course with RYU SDN Controller - Updated(2019)
+# SDN Crash Course with RYU SDN Controller - Updated(2019) - 8 Hours Video
 
-1. Syllabus & More details about this course
-http://knetsolutions.in/sdnbeginners
-
-2. 8+ hours Video Sessions
-
-3. Extensive documentations(step by step guide)
-
-4. Support in  Email (knetsolutions2@gmail.com) and Whatsapp +919445042007
-
-5. Fees - 30$
-
-6. preview videos
+- Fees 10$
+- Link
+https://www.udemy.com/beginners-sdn-course-with-ryu-controller-practical-handson/?couponCode=TEN_DOLLAR
+- Extensive documentations(step by step guide)
+- preview videos
 
 https://www.youtube.com/playlist?list=PLFY0hc9nGyb3Oduw6gl7F1L_UIpk9fZiE
  
@@ -33,4 +26,7 @@ https://www.youtube.com/playlist?list=PLFY0hc9nGyb3Oduw6gl7F1L_UIpk9fZiE
 we do provide IEEE SDN Project assistance. 
 More details:
 http://knetsolutions.in/projectideas
+
 http://knetsolutions.in/projects
+
+
